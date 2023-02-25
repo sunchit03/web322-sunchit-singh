@@ -1,0 +1,59 @@
+<section id="hero">
+    <div id="hero-img">
+        <picture>
+            <source media="(max-width:768px)" srcset="/images/hero2.jpg">
+            <img src="/images/hero1.jpg" alt="Hero Image" class="img-fluid">
+        </picture>
+        {{!-- <img src="/images/hero1.jpg" class="img-fluid" alt="image"> --}}
+    </div>
+    <div id="hero-text">
+        <p class="title">Find your next adventure with confidence. Browse our hand-picked collection of properties and book your dream stay today!</p>
+    </div>
+</section>
+
+<main id="main-content"></main>
+
+    <section id="features">
+        
+        <div class="feature-card">
+            <div class="card-content">     
+                <h5 class="card-title"><i class="fa fa-filter"></i>Search & Filter</h5>
+                <p class="card-para">Allows users to search and filter listings based on location, date, price, amenities, etc.</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-content">
+                <h5 class="card-title"><i class="fa fa-user"></i>User Accounts</h5>
+                <p class="card-para">Allows users to create personal accounts to manage bookings, view past stays, and store payment information.</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-content">
+                <h5 class="card-title"><i class="fa fa-star"></i>Reviews & Ratings</h5>
+                <p class="card-para">Incorporates user reviews and ratings to help other travelers make informed decisions.</p>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-content">
+                <h5 class="card-title"><i class="fa fa-store"></i>Marketing Tools</h5>
+                <p class="card-para">Offers tools for property owners to market and promote their listings.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="featured-rentals" class="container">
+        <h3>Featured Rentals</h3>
+        <div class="rent-row row row-cols-3">
+
+            {{#each rentals}}
+            {{>rental}}
+            {{/each}}
+
+        </div>
+    </section>
+
+</main>

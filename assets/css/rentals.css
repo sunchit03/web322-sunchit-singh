@@ -1,0 +1,79 @@
+#rentals-display {
+    position: relative;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.city-province-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 50px;
+    width: 70%;
+}
+
+.city-province-title {
+    margin-bottom: 20px;
+    align-self: center;
+}
+
+.rental-row {
+    justify-content: flex-start;
+}
+
+.rent-card {
+    margin-bottom: 8%;
+    /* height: 65vh; */
+}
+
+.rent-card-img {
+    width: 100%;
+    height: 70%;
+}
+
+.rent-img {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+    .rent-card {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .city-province-block {
+        max-width: unset;
+        /* width: 80%; */
+    }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 620px) { 
+    .rent-card {
+        width: unset;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .rent-card {
+        margin-bottom: 7%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .city-province-block {
+        width: 80%;
+    }
+    
+    .rent-card {
+        height: 65vh;
+        margin-bottom: 10%;
+    }
+}

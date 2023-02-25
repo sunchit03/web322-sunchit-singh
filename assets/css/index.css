@@ -1,0 +1,481 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Serif Ahom', serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color:#551a8b;
+    cursor: pointer;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 9999;
+}
+
+.logo-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 200px;
+    height: max-content;
+}
+
+#nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-link {
+    margin: 0px 5px;
+    padding: 20px 12px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s linear 0s;
+}
+
+.nav-link:hover {
+    background: lavender;
+}
+
+.nav-link span {
+    padding: 0 2px;
+    color:#551a8b;
+}
+
+.dropstart {display: none;}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropstart .dropdown-toggle::before {
+    display: none;
+}
+
+#hero {
+    height: calc(100vh - 100px);
+    margin-bottom: 50px;
+    position: relative;
+    top: 110px;
+    width: 100%;
+}
+
+#hero-img {
+    /* opacity: 0.85; */
+    height: 100%;
+    width: 100%;
+}
+
+#hero-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+
+#hero-text {
+    width: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    color: white;
+    z-index: 99;
+    background-color: rgb(35 26 139 / 37%);
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight:lighter;
+}
+
+#features {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 85vw;
+    margin: 0 auto 50px;
+    gap: 15px;
+    top: 100px;
+    position: relative;
+    /* top: 100px; */
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 4);
+}
+
+.card-content .fa {
+    font-size: 16px;
+    margin-right: 5%;
+}
+
+.card-para {
+    font-size: 15px;
+    color: #551a8b;
+    font-family: 'Lato', sans-serif;
+    font-weight: bolder;
+    letter-spacing: 0.1px;
+}
+
+#featured-rentals {
+    width: 80vw;
+    margin: 0 auto 50px;
+    position: relative;
+    top: 100px;
+}
+
+#featured-rentals .rent-row {
+    margin: 5px auto;
+    justify-content: flex-start;
+}
+
+.rent-card {
+    transition: 0.5s ease-in 0s;
+    margin-bottom: 5%;
+}
+
+.rent-bed-info, .rent-rating, .rent-price {
+    display: block;
+}
+
+.rent-card-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5%;
+    height: 70%;
+}
+
+.rent-card-img:before {
+    padding-top: 0%;
+    display: block;
+    content: "";
+    width: 100%;
+    border-radius: 5%;
+}
+
+.rent-img {
+    width: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform .65s ease;
+    height: 100%;
+}
+
+.rent-card:hover .rent-img {
+    transform: scale(1.1);
+}
+
+.rent-save {
+    position: absolute;
+    top: 7%;
+    right: 7%;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 20px;
+    gap: 5px;
+    border: 0px;
+    z-index: 99;
+}
+
+.rent-save:hover{
+    background-color: white;
+}
+
+.rent-save:hover .heart {
+    color: red;
+}
+
+.rent-save .heart {
+    font-size: medium;
+}
+
+.rent-save.heart:focus {
+    color: red;
+}
+
+.rent-save .save {
+    font-size: small;
+}
+
+/* Charming Cottage in Fabulous Locat... */
+.rent-card-title {
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    margin: 5px 0 0;
+    /* display: inline; */
+}
+
+.rating-stars {
+    color: goldenrod;
+}
+
+.rent-price .cost {
+    font-weight: bold;
+}
+
+footer {
+    background-color: lavender;
+    padding: 10px 20px 15px;
+    position: relative;
+    top: 100px;
+    /* width: 100%; */
+}
+
+footer .logo-wrap {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#footer-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+}
+
+#social-media-icons {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.sm-icon {
+    color: black;
+}
+
+.sm-icon i {
+    font-size: 30px;
+}
+
+
+#facebook:hover {
+    color: #3b5998;
+}
+
+#twitter:hover {
+    color:  #00acee;
+}
+
+#linkedin:hover {
+    color:  #0A66C2;
+}
+
+#youtube:hover {
+    color: #FF0000;
+}
+
+.blockquote {
+    font-size: 1.1rem;
+}
+
+cite {
+    display: block;
+}
+
+@media only screen and (max-width: 990px) {
+    .rent-card {
+        margin-bottom: 7%;
+    }
+
+    .card-title {
+        font-size: 1.15rem;
+    }
+
+    #features {
+        max-width: 90%;
+    }
+
+    #featured-rentals {
+        max-width: unset;
+        /* width: 50%; */
+    }
+
+    #social-media-icons {
+        width: 25%;
+    }
+
+    .blockquote {
+        font-size: 1.05rem;
+    }
+}
+
+@media only screen and (max-width: 800px) and (min-width: 620px) { 
+    .rent-card {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    #features {
+        flex-wrap: wrap;
+    }
+    
+    .feature-card {
+    width: 35%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #hero-text {
+    background-color: rgb(35 26 139 / 47%);
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    #nav-links {
+        display: none;
+    }
+
+    .dropstart {
+        display: unset;
+        margin-right: 3%;
+    }
+
+    #hero-text {
+        font-size: 20px;
+    }
+
+    #social-media-icons {
+        width: 30%;
+    }
+
+    .blockquote {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    #social-media-icons {
+        width: 40%;
+    }
+
+    #hero-text {
+        font-size: 18px;
+        width: 75%;
+    }
+
+    .blockquote {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #hero-text {
+        font-size: 16px;
+    }
+
+    #features {
+        column-gap: 0px;
+        row-gap: 3px;
+        max-width: unset;
+        width: 90%;
+        justify-content: space-between;
+    }
+
+    .feature-card {
+        width: 45%;
+    }
+
+    .card-title {
+        font-size: 1.05rem;
+    }
+
+    .card-para {
+        font-size: 13px;
+    }
+
+    .rent-card {
+        margin-bottom: 18%;
+        height: 50vh;
+    }
+
+    .blockquote {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    #social-media-icons {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #hero-text {
+        font-size: 16px;
+        width: 85%;
+    }
+
+    .rent-card {
+        margin-bottom: 18%;
+    }   
+
+    #social-media-icons {
+        width: 60%;
+    }
+
+    .blockquote {
+        margin: 0 -10px
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    #features {
+        width: 95%;
+    }
+
+    .rent-card {
+        margin-bottom: 21%;
+    }   
+}

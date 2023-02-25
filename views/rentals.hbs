@@ -1,0 +1,35 @@
+<section id="rentals-display">
+    
+    {{#each rentalList}}
+    <div class="city-province-block container">
+        <h3 class="city-province-title">{{cityProvince}}</h3>
+        <div class="rental-row row">
+            {{#each rentals}}
+                {{>rental}}
+            {{/each}}
+        </div>
+    </div>
+    {{/each}}
+</section>
+
+<script>
+
+    window.onload = (event) => {
+        let starRatings = document.getElementsByClassName("rating-stars");
+        for (let i = 0; i < starRatings.length; i++) {
+            let stars = parseFloat(starRatings[i].innerText);
+            starRatings[i].innerText = "";
+            for (let j = 0; j < Math.floor(stars); j++) {
+                starRatings[i].innerHTML += `<i class="fa fa-star"></i>`;
+            }
+            if (stars % 1 != 0) {
+                stars = stars % 1;
+                if (stars >= 0.3 && stars <= 0.701) {
+                    starRatings[i].innerHTML += `<i class="fa fa-star-half"></i>`
+                } else if (stars >= 0.701) {
+                    starRatings[i].innerHTML += `<i class="fa fa-star"></i>`;
+                }
+            }
+        }
+    };
+</script>

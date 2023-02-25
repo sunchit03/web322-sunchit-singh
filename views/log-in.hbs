@@ -1,0 +1,21 @@
+<section id="log-in-block" class="border">
+    <h2 class="mb-3">Welcome back</h2>
+    <form id="log-in">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" id="email" class="form-control" name="email" autocomplete="email" tabindex="1" required>
+        
+        <div class="row">
+            <label for="password" class="form-label mt-2">Password</label>
+            <div class="col password-col">
+                <input type="password" id="password" class="form-control mb-4" name="password" autocomplete="current-password" tabindex="4" required>
+            </div>
+            <div class="col eye-col">
+                
+                <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off" onclick="checkPassword()">
+                <label class="btn" for="btn-check" id="eye"><i class="fa fa-eye-slash"></i></label>
+            </div>
+        </div>
+
+        <input type="submit" id="submit" class="btn btn-outline-primary" value="Log in" tabindex="3">
+    </form>
+</section>
