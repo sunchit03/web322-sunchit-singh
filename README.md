@@ -10,4 +10,4 @@ No part of this assignment has been copied manually or electronically from any o
 
 ## Project URLs
 - GitHub Repo   : https://github.com/sunchit03/web322-sunchit-singh
-- Cyclic URL    : https://https://shiny-khakis.cyclic.app/
+- Cyclic URL    : https://shiny-khakis.cyclic.app/
