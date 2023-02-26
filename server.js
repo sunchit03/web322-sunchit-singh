@@ -112,14 +112,69 @@ app.post("/log-in", (req, res) => {
 
     if (passedValidation) {
         res.redirect("welcome");
-        // res.render("welcome", {
-        //     title: "Welcome",
-        //     css: true,
-        //     href: "welcome"
-        // });
     } else {
         res.render("log-in", {
             title: "Log In",
+            css: true,
+            href: "log-in",
+            script: true,
+            src: "password-hide-show",
+            validationMessages,
+            values: req.body
+        });
+    }
+})
+
+app.post("/sign-up", (req, res) => {
+    console.log(req.body);
+    const {fname, lname, email, password} = req.body;
+
+    let passedValidation = true;
+    let validationMessages = {};
+
+    if (typeof fname !== "string" || fname.trim().length === 0) {
+        passedValidation = false;
+        validationMessages.fname = "You must specify your first name";
+    }
+
+    if (typeof lname !== "string" || lname.trim().length === 0) {
+        passedValidation = false;
+        validationMessages.lname = "You must specify your last name";
+    }
+
+    // https://www.w3resource.com/javascript/form/email-validation.php
+    let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (typeof email !== "string" || email.trim().length === 0 || !email.match(emailRegex)) {
+        passedValidation = false;
+
+        if (typeof email !== "string" || email.trim().length === 0) {
+            validationMessages.email = "You must specify an email address";
+        }
+        else {
+            validationMessages.email = "Email wrong format";
+        }
+    }
+
+    // https://www.w3resource.com/javascript/form/password-validation.php
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,12}$/
+
+    if (typeof password !== "string" || password.trim().length === 0 || !password.match(passwordRegex)) {
+        passedValidation = false;
+
+        if (typeof password !== "string" || password.trim().length === 0) {
+            validationMessages.password = "You must specify a password";
+        }
+        else {
+            validationMessages.password = "Password wrong format";
+        }
+    }    
+
+    if (passedValidation) {
+        res.redirect("welcome");
+    } else {
+        res.render("sign-up", {
+            title: "Sign Up",
             css: true,
             href: "log-in",
             script: true,
