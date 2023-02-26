@@ -23,6 +23,9 @@ app.engine(".hbs", exphbs.engine({
 }));
 app.set("view engine", ".hbs");
 
+// Set up body parser
+app.use(express.urlencoded({extended: false}));
+
 // Make the assets folder public
 app.use(express.static(path.join(__dirname, "/assets")));
 
@@ -74,11 +77,18 @@ app.get("/sign-up", (req, res) => {
 
 app.get("/log-in", (req, res) => {
     res.render("log-in", {
-        title: "Log I",
+        title: "Log In",
         css: true,
         href: "log-in",
         script: true,
         src: "password-hide-show"
+    });
+})
+
+app.post("/log-in", (req, res) => {
+    console.log(req.body);
+    res.render("welcome", {
+        title: "Welcome"
     });
 })
 
