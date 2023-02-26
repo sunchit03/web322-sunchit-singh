@@ -14,6 +14,12 @@ const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const rentalList = require("./models/rentals-db");
+
+// Set up dotenv
+const dotenv = require("dotenv");
+dotenv.config({path: "./config/keys.env"});
+
+// Set up express
 const app = express();
 
 // Set up Handlebars
@@ -172,7 +178,7 @@ app.post("/sign-up", (req, res) => {
 
     if (passedValidation) {
         const sgMail = require("@sendgrid/mail");
-        sgMail.setApiKey("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");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
         const msg = {
             to: email,
