@@ -171,7 +171,36 @@ app.post("/sign-up", (req, res) => {
     }    
 
     if (passedValidation) {
-        res.redirect("welcome");
+        const sgMail = require("@sendgrid/mail");
+        sgMail.setApiKey("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");
+
+        const msg = {
+            to: email,
+            from: "sunchit333@gmail.com",
+            subject: "Welcome",
+            html:
+                `Hi Boss`
+        };
+
+        sgMail.send(msg)
+        .then(() => {
+            res.redirect("welcome")
+        })
+        .catch(err => {
+            console.log(err);
+
+            res.render("sign-up", {
+                title: "Sign Up",
+                css: true,
+                href: "log-in",
+                script: true,
+                src: "password-hide-show",
+                validationMessages,
+                values: req.body
+            });
+            
+        });
+
     } else {
         res.render("sign-up", {
             title: "Sign Up",
