@@ -85,11 +85,49 @@ app.get("/log-in", (req, res) => {
     });
 })
 
+app.get("/welcome", (req, res) => {
+    res.render("welcome", {
+        title: "Welcome",
+        css: true,
+        href: "welcome"
+    });
+})
+
 app.post("/log-in", (req, res) => {
     console.log(req.body);
-    res.render("welcome", {
-        title: "Welcome"
-    });
+    const {email, password} = req.body;
+
+    let passedValidation = true;
+    let validationMessages = {};
+
+    if (typeof email !== "string" || email.trim().length === 0) {
+        passedValidation = false;
+        validationMessages.email = "You must specify an email address";
+    }
+
+    if (password.trim().length === 0) {
+        passedValidation = false;
+        validationMessages.password = "You must specify a password";
+    }
+
+    if (passedValidation) {
+        res.redirect("welcome");
+        // res.render("welcome", {
+        //     title: "Welcome",
+        //     css: true,
+        //     href: "welcome"
+        // });
+    } else {
+        res.render("log-in", {
+            title: "Log In",
+            css: true,
+            href: "log-in",
+            script: true,
+            src: "password-hide-show",
+            validationMessages,
+            values: req.body
+        });
+    }
 })
 
 // *** DO NOT MODIFY THE LINES BELOW ***
