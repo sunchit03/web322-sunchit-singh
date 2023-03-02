@@ -30,6 +30,7 @@ a {
     width: 100%;
     background-color: white;
     z-index: 9999;
+    height: 20vh;
 }
 
 .logo-wrap {
@@ -46,7 +47,7 @@ a {
 
 .logo-img {
     width: 200px;
-    height: 10vh;
+    height: 12vh;
 }
 
 #nav-links {
@@ -87,10 +88,10 @@ a {
 }
 
 #hero {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 20vh);
     margin-bottom: 50px;
     position: relative;
-    top: 110px;
+    top: 20vh;
     width: 100%;
 }
 
