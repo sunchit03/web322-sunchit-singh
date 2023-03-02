@@ -91,7 +91,7 @@ a {
     height: calc(100vh - 20vh);
     margin-bottom: 50px;
     position: relative;
-    top: 20vh;
+    top: 25vh;
     width: 100%;
 }
 
@@ -412,6 +412,20 @@ cite {
 }
 
 @media only screen and (max-width: 480px) {
+
+    #navbar {
+        height: 15vh;
+    }
+
+    .logo-img {
+        height: 10vh;
+    }
+
+    #hero {
+        height: calc(100vh - 15vh);
+        top: 18vh;
+    }
+
     #hero-text {
         font-size: 16px;
     }
