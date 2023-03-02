@@ -214,6 +214,7 @@ a {
     gap: 5px;
     border: 0px;
     z-index: 99;
+    color: black;
 }
 
 .rent-save:hover{
