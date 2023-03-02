@@ -91,7 +91,7 @@ a {
     height: calc(100vh - 20vh);
     margin-bottom: 50px;
     position: relative;
-    top: 25vh;
+    top: 20vh;
     width: 100%;
 }
 
@@ -423,7 +423,7 @@ cite {
 
     #hero {
         height: calc(100vh - 15vh);
-        top: 18vh;
+        top: 15vh;
     }
 
     #hero-text {
