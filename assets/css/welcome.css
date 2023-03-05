@@ -1,5 +1,12 @@
-h1#welcome {
+#welcome-para {
     position: relative;
     top: 150px;
     margin-bottom: 100px;
+    padding: 0px 5%;
+    /* text-align: center; */
+}
+
+#welcome {
+    margin: 0 auto 10px;
+    text-align: center;
 }
