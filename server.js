@@ -118,6 +118,13 @@ app.post("/log-in", (req, res) => {
 
     if (passedValidation) {
         // res.redirect("welcome");
+        res.render("log-in", {
+            title: "Log In",
+            css: true,
+            href: "log-in",
+            script: true,
+            src: "password-hide-show"
+        });
     } else {
         res.render("log-in", {
             title: "Log In",
@@ -174,6 +181,8 @@ app.post("/sign-up", (req, res) => {
         else {
             validationMessages.password = "Your password must be between 8 and 12 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters.";
         }
+
+        validationMessages.password = "Your password must be between 8 and 12 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters.";
     }    
 
     if (passedValidation) {

@@ -1,6 +1,6 @@
 <section id="log-in-block" class="border">
     <h2 class="mb-3">Welcome back</h2>
-    <form id="log-in" method="post" action="/log-in">
+    <form id="log-in" method="post">
         <label for="email" class="form-label">Email Address</label>
         <input type="text" id="email" class="form-control {{#if validationMessages.email}}is-invalid{{/if}}" name="email" autocomplete="email" value="{{values.email}}" tabindex="1">
         {{#if validationMessages.email}}
