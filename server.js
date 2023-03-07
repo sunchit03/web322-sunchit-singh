@@ -117,7 +117,7 @@ app.post("/log-in", (req, res) => {
     }
 
     if (passedValidation) {
-        res.redirect("welcome");
+        // res.redirect("welcome");
     } else {
         res.render("log-in", {
             title: "Log In",
@@ -158,12 +158,12 @@ app.post("/sign-up", (req, res) => {
             validationMessages.email = "You must specify an email address";
         }
         else {
-            validationMessages.email = "Email wrong format";
+            validationMessages.email = "Please enter a valid email address.";
         }
     }
 
     // https://www.w3resource.com/javascript/form/password-validation.php
-    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,12}$/
+    let passwordRegex = /^(?!\s)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,12}(?<!\s)$/
 
     if (typeof password !== "string" || password.trim().length === 0 || !password.match(passwordRegex)) {
         passedValidation = false;
@@ -172,7 +172,7 @@ app.post("/sign-up", (req, res) => {
             validationMessages.password = "You must specify a password";
         }
         else {
-            validationMessages.password = "Password wrong format";
+            validationMessages.password = "Your password must be between 8 and 12 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters.";
         }
     }    
 
@@ -180,12 +180,25 @@ app.post("/sign-up", (req, res) => {
         const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
+        const body = 'This is a test email using SendGrid from Node.js';
         const msg = {
             to: email,
             from: "sunchit333@gmail.com",
             subject: "Welcome",
-            html:
-                `Hi Boss`
+            // html:
+            //     `</strong>Dear ` + fname +`,</strong>\nThanks for signing up with us! We offer a wide range of comfortable and enjoyable lodging options for your travel needs. Our user-friendly platform makes it easy to book your preferred accommodation, and our team is available 24/7 to assist you. Our properties are thoroughly sanitized and equipped with modern amenities to ensure your comfort. We look forward to hosting you soon and providing you with a memorable experience.\nBest regards,\nStayOnTheGo`
+            //text: body,
+            // html: `<strong>Dear ${fname},</strong>
+            // <p>Thanks for signing up with us!</p>`,
+            html: `Dear ${fname},
+            <p>Welcome to StayOnTheGo, your ultimate destination for comfortable and enjoyable lodging options. We offer a wide range of properties to suit your unique travel needs, and our user-friendly platform makes it easy to book your preferred accommodation. Our team is available 24/7 to assist you, and our properties are equipped with modern amenities to ensure your comfort.</p>
+
+            <p>Thank you for choosing StayOnTheGo as your lodging partner. We are committed to providing you with a seamless and enjoyable experience, and we can't wait to host you soon.</p>
+            
+            <p>Best regards,
+            <br>
+            Sunchit Singh
+            </p>`
         };
 
         sgMail.send(msg)
