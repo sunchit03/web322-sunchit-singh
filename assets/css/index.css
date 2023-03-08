@@ -46,7 +46,7 @@ a {
 }
 
 .logo-img {
-    width: 200px;
+    /* width: 200px; */
     height: 12vh;
 }
 
@@ -128,7 +128,7 @@ a {
     max-width: 85vw;
     margin: 0 auto 50px;
     gap: 15px;
-    top: 100px;
+    top: 20vh;
     position: relative;
     /* top: 100px; */
 }
@@ -156,7 +156,7 @@ a {
     width: 80vw;
     margin: 0 auto 50px;
     position: relative;
-    top: 100px;
+    top: 20vh;
 }
 
 #featured-rentals .rent-row {
@@ -258,7 +258,7 @@ footer {
     background-color: lavender;
     padding: 10px 20px 15px;
     position: relative;
-    top: 100px;
+    top: 20vh;
     /* width: 100%; */
 }
 
@@ -365,7 +365,7 @@ cite {
     }
     
     .feature-card {
-    width: 35%;
+        width: 35%;
     }
 }
 
@@ -386,6 +386,18 @@ cite {
 
     #hero-text {
     background-color: rgb(35 26 139 / 47%);
+    }
+
+    #features {
+        top: 25vh;
+    }
+
+    #featured-rentals {
+        top: 25vh;
+    }
+
+    footer {
+        top: 25vh;
     }
 }
 
@@ -453,6 +465,7 @@ cite {
         max-width: unset;
         width: 90%;
         justify-content: space-between;
+        top: 15vh;
     }
 
     .feature-card {
@@ -467,9 +480,17 @@ cite {
         font-size: 13px;
     }
 
+    #featured-rentals {
+        top: 15vh;
+    }
+
     .rent-card {
         margin-bottom: 18%;
         height: 40vh;
+    }
+
+    footer {
+        top: 15vh;
     }
 
     .blockquote {

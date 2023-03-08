@@ -1,9 +1,9 @@
 #log-in-block {
-    width: 35%;
+    width: 40%;
     margin: 0 auto;
     padding: 50px 50px;
     position: relative;
-    top: 150px;
+    top: 25vh;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
@@ -43,9 +43,13 @@ form {
 }
 
 
-@media only screen and (max-width: 990px) {
+@media only screen and (max-width: 992px) {
     #log-in-block {
         width: 50%;
+    }
+
+    #eye {
+        right: 10%;
     }
 }
 
@@ -55,16 +59,29 @@ form {
     }
 }
 
+@media only screen and (max-width: 768px) {
+    #log-in-block {
+        top: 30vh;
+    }
+}
+
 @media only screen and (max-width: 650px) {
-    .eye-col {
+    #eye {
         right: 15%;
     }
 }
 
 @media only screen and (max-width: 540px) {
     #log-in-block {
+        top: 30vh;
         width: 70%;
         padding: 40px 25px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #log-in-block {
+        top: 20vh
     }
 }
 

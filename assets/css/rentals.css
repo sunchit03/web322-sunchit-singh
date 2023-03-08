@@ -1,6 +1,6 @@
 #rentals-display {
     position: relative;
-    top: 150px;
+    top: 25vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,6 +61,13 @@
     }
 }
 
+
+@media only screen and (max-width: 768px) {
+    #rentals-display {
+        top: 30vh;
+    }
+}
+
 @media only screen and (max-width: 730px) {
     .rent-card {
         margin-bottom: 7%;
@@ -68,6 +75,11 @@
 }
 
 @media only screen and (max-width: 480px) {
+
+    #rentals-display {
+        top: 20vh;
+    }
+
     .city-province-block {
         width: 80%;
     }
