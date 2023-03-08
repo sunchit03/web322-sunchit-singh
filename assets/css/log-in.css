@@ -16,10 +16,6 @@ form {
     width: 100%;
 }
 
-.row {
-    /* position: relative; */
-}
-
 .col {
     flex: none;
     position: relative;
