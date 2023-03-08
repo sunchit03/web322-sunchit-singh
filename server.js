@@ -118,12 +118,12 @@ app.post("/log-in", (req, res) => {
 
     if (passedValidation) {
         // res.redirect("welcome");
-        res.render("log-in", {
-            title: "Log In",
-            css: true,
-            href: "log-in",
+        res.render("home", {
+            rentals: rentalList.getFeaturedRentals(),
+            title: "Home",
+            css: false,
             script: true,
-            src: "password-hide-show"
+            src: "star-rating"
         });
     } else {
         res.render("log-in", {
