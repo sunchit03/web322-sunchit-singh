@@ -11,19 +11,15 @@
         <div class="row">
             <label for="password" class="form-label mt-2">Password</label>
             <div class="col password-col">
-                <input type="password" id="password" class="form-control {{#if validationMessages.password}}is-invalid{{/if}}" name="password" autocomplete="current-password" value="{{values.password}}" tabindex="2">
+                <input type="password" id="password" class="form-control {{#if validationMessages.password}}is-invalid{{/if}}" name="password" autocomplete="current-password" value="{{values.password}}" tabindex="2">  
+                <i class="fa fa-eye-slash eye-icon" id="eye" onclick="checkPassword()" {{#if validationMessages.password}}style="top: 30%; right: 18%"{{/if}}></i>
                 {{#if validationMessages.password}}
-                <div class="invalid-feedback" aria-describedby="password">{{validationMessages.password}}</div>
+                <div class="invalid-feedback">{{validationMessages.password}}</div>
                 {{/if}}
-            </div>
-            <div class="col eye-col" {{#if validationMessages.password}}style="top: 40%; right: 18%"{{/if}}>
-                
-                <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off" onclick="checkPassword()" tabindex="3">
-                <label class="btn" for="btn-check" id="eye"><i class="fa fa-eye-slash"></i></label>
             </div>
         </div>
         
 
-        <input type="submit" id="submit" class="btn btn-outline-primary mt-4" value="Log in" tabindex="4">
+        <input type="submit" id="submit" class="btn btn-outline-primary mt-4" value="Log in" tabindex="3">
     </form>
 </section>
