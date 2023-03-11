@@ -194,11 +194,6 @@ app.post("/sign-up", (req, res) => {
             to: email,
             from: "sunchit333@gmail.com",
             subject: "Welcome",
-            // html:
-            //     `</strong>Dear ` + fname +`,</strong>\nThanks for signing up with us! We offer a wide range of comfortable and enjoyable lodging options for your travel needs. Our user-friendly platform makes it easy to book your preferred accommodation, and our team is available 24/7 to assist you. Our properties are thoroughly sanitized and equipped with modern amenities to ensure your comfort. We look forward to hosting you soon and providing you with a memorable experience.\nBest regards,\nStayOnTheGo`
-            //text: body,
-            // html: `<strong>Dear ${fname},</strong>
-            // <p>Thanks for signing up with us!</p>`,
             html: `Dear ${fname},
             <p>Welcome to StayOnTheGo, your ultimate destination for comfortable and enjoyable lodging options. We offer a wide range of properties to suit your unique travel needs, and our user-friendly platform makes it easy to book your preferred accommodation. Our team is available 24/7 to assist you, and our properties are equipped with modern amenities to ensure your comfort.</p>
 
