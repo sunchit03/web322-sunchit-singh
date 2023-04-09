@@ -1,14 +1,14 @@
 <section id="log-in-block" class="border">
     <h2 class="mb-3">Welcome back</h2>
-    <form id="log-in" method="post">
+    <form id="log-in" method="post" action="/log-in">
         <label for="email" class="form-label">Email Address</label>
-        <input type="text" id="email" class="form-control {{#if validationMessages.email}}is-invalid{{/if}}" name="email" autocomplete="email" value="{{values.email}}" tabindex="1">
+        <input type="email" id="email" class="form-control {{#if validationMessages.email}}is-invalid{{/if}}" name="email" autocomplete="email" value="{{values.email}}" tabindex="1">
         {{#if validationMessages.email}}
         <div class="invalid-feedback">{{validationMessages.email}}</div>
         {{/if}}
 
 
-        <div class="row">
+        <div class="row mb-3">
             <label for="password" class="form-label mt-2">Password</label>
             <div class="col password-col">
                 <input type="password" id="password" class="form-control {{#if validationMessages.password}}is-invalid{{/if}}" name="password" autocomplete="current-password" value="{{values.password}}" tabindex="2">  
@@ -19,7 +19,19 @@
             </div>
         </div>
         
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="clerk" value="Clerk" name="clerkorcust" tabindex="3" checked>
+            <label class="form-check-label" for="clerk">Clerk</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="customer" value="Customer" name="clerkorcust" tabindex="4">
+            <label class="form-check-label" for="customer">Customer</label>
+        </div>
 
-        <input type="submit" id="submit" class="btn btn-outline-primary mt-4" value="Log in" tabindex="3">
+        <div class="text-end">
+            <a href="/forgot-password-1" class="link-dark fst-italic" style="text-decoration: underline">Forgot Password?</a>
+        </div>
+
+        <input type="submit" id="submit" class="btn btn-outline-primary mt-4" value="Log in" tabindex="5">
     </form>
 </section>

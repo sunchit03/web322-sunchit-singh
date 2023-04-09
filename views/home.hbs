@@ -49,9 +49,26 @@
         <h3>Featured Rentals</h3>
         <div class="rent-row row row-cols-3">
 
-            {{#each rentals}}
-            {{>rental}}
-            {{/each}}
+            {{!-- {{#each rentals}}
+                {{>rental}}
+            {{/each}} --}}
+
+
+            {{#if user}}
+                {{#if isClerk}}
+                    {{#each rentals}}
+                        {{>rental isList=false isUser=true clerk=true}}
+                    {{/each}}
+                {{else}}
+                    {{#each rentals}}
+                        {{>rental isList=false isUser=true clerk=false}}
+                    {{/each}}
+                {{/if}}
+            {{else}}
+                {{#each rentals}}
+                    {{>rental isList=false isUser=false clerk=false}}
+                {{/each}}
+            {{/if}}
 
         </div>
     </section>

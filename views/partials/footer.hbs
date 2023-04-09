@@ -1,7 +1,6 @@
 <footer>
-
     <div class="logo-wrap">
-        <a class="logo-link" href="./" title="StayOnTheGo">
+        <a class="logo-link" href="/" title="StayOnTheGo">
             <img class="logo-img" src="/images/stay-on-the-go-logo.png" alt="Stay On The Go Logo">
         </a>
     </div>
@@ -9,21 +8,28 @@
     <div id="footer-row">
         <ul id="footer-links">
             <li class="footer-item">
-                <a class="footer-link" href="./"><span>Home</span>
+                <a class="footer-link" href="/"><span>Home</span>
                 </a>
             </li>
             <li class="footer-item">
-                <a class="footer-link" href="./rentals"><span>Rentals</span>
+                <a class="footer-link" href="/rentals/rentals"><span>Rentals</span>
+                </a>
+            </li>
+            {{#if user}}
+            <li class="footer-tem">
+                <a class="footer-link" href="/log-out"><span>Log out</span>
+                </a>
+            </li>
+            {{else}}
+            <li class="footer-item">
+                <a class="footer-link" href="/log-in"><span>Log in</span>
                 </a>
             </li>
             <li class="footer-item">
-                <a class="footer-link" href="./log-in"><span>Log in</span>
+                <a class="footer-link" href="/sign-up"><span>Sign up</span>
                 </a>
             </li>
-            <li class="footer-item">
-                <a class="footer-link" href="./sign-up"><span>Sign up</span>
-                </a>
-            </li>
+            {{/if}}
         </ul>
 
         <div id="social-media-icons">

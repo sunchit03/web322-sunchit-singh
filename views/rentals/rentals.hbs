@@ -1,0 +1,39 @@
+<section id="rentals-display">
+    {{#if user}}
+        {{#if isClerk}}
+            {{#each rentalList}}
+                <div class="city-province-block container">
+                    <h3 class="city-province-title">{{cityProvince}}</h3>
+                    <div class="rental-row row">
+                        {{#each rentals}}
+                            {{>rental isList=false isUser=true clerk=true}}
+                        {{/each}}
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            {{#each rentalList}}
+                <div class="city-province-block container">
+                    <h3 class="city-province-title">{{cityProvince}}</h3>
+                    <div class="rental-row row">
+                        {{#each rentals}}
+                            {{>rental isList=false isUser=true clerk=false}}
+                        {{/each}}
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    {{else}}
+        {{#each rentalList}}
+            <div class="city-province-block container">
+                <h3 class="city-province-title">{{cityProvince}}</h3>
+                <div class="rental-row row">
+                    {{#each rentals}}
+                        {{>rental isList=false isUser=false clerk=false}}
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+
+</section>

@@ -66,6 +66,7 @@ a {
     justify-content: space-between;
     align-items: center;
     transition: 0.5s linear 0s;
+    border-radius: 0.375rem;
 }
 
 .nav-link:hover {
@@ -244,6 +245,10 @@ a {
     /* text-overflow: ellipsis; */
     margin: 5px 0 0;
     /* display: inline; */
+}
+
+.rent-rating {
+    display: flex;
 }
 
 .rating-stars {

@@ -1,5 +1,5 @@
-#log-in-block {
-    width: 40%;
+#edit-block {
+    width: 50%;
     margin: 0 auto;
     padding: 50px 50px;
     position: relative;
@@ -16,63 +16,40 @@ form {
     width: 100%;
 }
 
-.col {
-    flex: none;
-    position: relative;
-}
-
-#eye, #eye1 {
-    width: 1%;
-    position: absolute;
-    top: 50%;
-    right: 10%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-}
 
 #submit {
     width: 100%;
     border-color: #341a73;
     color: #341a73;
+    background-color: unset;
 }
 
 #submit:hover {
     background-color: #341a73;
     color: white;
-    /* border-color: greenyellow; */
 }
 
 
 @media only screen and (max-width: 992px) {
-    #log-in-block {
+    #edit-block {
         width: 50%;
-    }
-
-    #eye, #eye1 {
-        right: 10%;
     }
 }
 
 @media only screen and (max-width: 800px) {
-    #log-in-block {
+    #edit-block {
         width: 60%;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    #log-in-block {
+    #edit-block {
         top: 30vh;
     }
 }
 
-@media only screen and (max-width: 650px) {
-    #eye, #eye1 {
-        right: 15%;
-    }
-}
-
 @media only screen and (max-width: 540px) {
-    #log-in-block {
+    #edit-block {
         top: 30vh;
         width: 70%;
         padding: 40px 25px;
@@ -80,13 +57,13 @@ form {
 }
 
 @media only screen and (max-width: 480px) {
-    #log-in-block {
+    #edit-block {
         top: 20vh
     }
 }
 
 @media only screen and (max-width: 420px) {
-    #log-in-block {
+    #edit-block {
         width: 80%;
     }
 }

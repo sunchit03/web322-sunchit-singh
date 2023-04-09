@@ -96,7 +96,7 @@ module.exports.getFeaturedRentals = function() {
     return rentals.filter(rental => rental.featuredRental);
 }
 
-module.exports.getRentalsByCityAndProvince = function() {
+module.exports.getRentalsByCityAndProvince = function(rentals) {
     const rentalGroups = {};
     for (const rental of rentals) {
         const cityProvince = `${rental.city}, ${rental.province}`;
@@ -110,4 +110,20 @@ module.exports.getRentalsByCityAndProvince = function() {
         rentals
   }));
 
+}
+
+module.exports.getAllRentals = function() {
+    return rentals.sort((a, b) => {
+        const nameA = a.headline.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.headline.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      
+        // names must be equal
+        return 0;
+      });
 }

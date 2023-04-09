@@ -1,15 +1,42 @@
 <div class="rent-card col-12 col-md-6 col-lg-4">
+
+    {{#if isList}}
+    <div class="buttons d-flex justify-content-center">
+        <a class="nav-link" href="/rentals/edit/{{_id}}"><span class="material-symbols-outlined">
+            edit</span>
+        </a>
+        <a class="nav-link" href="/rentals/remove/{{_id}}"><span class="material-symbols-outlined">
+            delete</span>
+        </a>
+    </div>
+    {{/if}}
+
     <div class="rent-card-img">
         <img class="rent-img img-fluid" src="/images/{{imageUrl}}" alt="Rental Property">
-        <button class="rent-save" type="button">
-            <span class="material-symbols-outlined heart">favorite</span>
-            <span class="save">Save</span>
-        </button>
+        {{#if isUser}}
+            {{#if clerk}}
+            {{else}}
+                 {{#if isInCart}}
+                    <button class="rent-save" type="submit" disabled>
+                        <span class="material-symbols-outlined heart">shopping_cart</span>
+                        <span class="save">In Cart</span>
+                    </button>
+                {{else}}
+                    <form method="post" action="/cart/add/{{_id}}">
+                        <button class="rent-save" type="submit">
+                            <span class="material-symbols-outlined heart">favorite</span>
+                            <span class="save">Rent</span>
+                        </button>
+                    </form>
+                {{/if}}
+            {{/if}}
+        {{else}}
+        {{/if}}
     </div>
     <div class="rent-card-info">
         <h6 class="rent-card-title text-truncate">{{headline}}</h6>
         <span class="rent-bed-info">Sleeps {{numSleeps}} | {{numBedrooms}} BR | {{numBathrooms}} BA</span>
-        <span class="rent-rating"><span class="rating-stars">{{rating}}</span>({{reviews}})</span>
+        <span class="rent-rating"><span class="rating-stars">{{rating}}</span><span class="rating-reviews">({{reviews}})</span></span>
         <span class="rent-price"><span class="cost">CA${{pricePerNight}}</span> avg/night</span>
     </div>
 </div>

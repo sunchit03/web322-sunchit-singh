@@ -1,0 +1,21 @@
+<div id="main-btns" class="mx-auto d-flex justify-content-center">
+    <a href="/load-data/rentals" class="text-white">
+        <button type="button" class="btn btn-primary mx-2">
+            Load Rentals
+        </button>
+    </a>
+    <a href="/rentals/add" class="text-white">
+        <button type="button" class="btn btn-secondary mx-2 d-flex">
+            <span class="material-symbols-outlined">add</span><span>Add Rental</span>
+        </button>
+    </a>
+</div>
+<section id="rentals-display">
+    <div class="list-box container">
+        <div class="rental-row row">
+            {{#each rentals}}
+                {{>rental isList=true isUser=true clerk=true}}
+            {{/each}}
+        </div>
+    </div>
+</section>

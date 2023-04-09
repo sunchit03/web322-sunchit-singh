@@ -1,0 +1,75 @@
+<section id="edit-block" class="border">
+    <h2 class="mb-3">New Rental</h2>
+    <form id="edit" method="post" action="/rentals/add" enctype="multipart/form-data">
+
+        <div class="form-floating mb-3">
+            <input type="text" id="headline" class="form-control {{#if validationMessages.headline}}is-invalid{{/if}}" name="headline" value="{{values.headline}}" tabindex="1" required>
+            <label for="headline" class="form-label">Headline</label>
+            {{#if validationMessages.headline}}
+            <div class="invalid-feedback">{{validationMessages.email}}</div>
+            {{/if}}
+        </div>
+
+        <div class="row g-2 mb-3">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="numSleeps" name="numSleeps" tabindex="2" min="0" max="100" value="{{values.numSleeps}}" required>
+                    <label for="numSleeps">Sleeps</label>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="numBedrooms" name="numBedrooms" tabindex="3" min="0" max="100" value="{{values.numBedrooms}}" required>
+                    <label for="numBedrooms">Bedrooms</label>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="numBathrooms" name="numBathrooms" tabindex="4" min="0" max="100"  value="{{values.numBathrooms}}" required>
+                    <label for="numBathrooms">Bathrooms</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="number" id="pricePerNight" class="form-control {{#if validationMessages.pricePerNight}}is-invalid{{/if}}" step=".01" name="pricePerNight" tabindex="5" min="0.00" value="{{values.pricePerNight}}" required>
+            <label for="pricePerNight" class="form-label">Price Per Night</label>
+            {{#if validationMessages.pricePerNight}}
+            <div class="invalid-feedback">{{validationMessages.pricePerNight}}</div>
+            {{/if}}
+        </div>
+
+        
+        <div class="row g-2 mb-3">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="city" name="city" tabindex="6" value="{{values.city}}" required>
+                    <label for="city">City</label>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="province" name="province" tabindex="7" value="{{values.province}}" required>
+                    <label for="province">Province</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">Photo</label>
+            <input class="form-control" type="file" id="imageUrl" name="imageUrl" accept="image/jpg, image/jpeg, image/gif, image/png" tabindex="8" required>
+        </div>
+
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="featuredRental">Featured</label>
+            <input class="form-check-input" type="checkbox" role="switch" id="featuredRental" name="featuredRental" {{#if values.featuredRental}}checked{{/if}} tabindex="9">
+        </div>
+
+
+        <input type="submit" id="submit" class="btn btn-outline-primary mt-4 mb-2" value="Add Rental" tabindex="10">
+    </form>
+</section>

@@ -1,0 +1,84 @@
+#main-btns {
+    position: relative;
+    top: 30vh;
+    width: 40%;
+    margin-bottom: 50px;
+}
+
+#rentals-display {
+    position: relative;
+    top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 50px;
+}
+
+.list-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 50px;
+    width: 70%;
+}
+
+.rental-row {
+    justify-content: flex-start;
+    /* width: 80%; */
+}
+
+.rent-card {
+    margin-bottom: 8%;
+    /* height: 65vh; */
+}
+
+.rent-card-img {
+    width: 100%;
+    height: 70%;
+}
+
+.rent-img {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+    .rent-card {
+        width: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 800px) and (min-width: 620px) { 
+    .rent-card {
+        width: unset;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    #rentals-display {
+        top: 30vh;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .rent-card {
+        margin-bottom: 7%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    #rentals-display {
+        top: 20vh;
+    }
+    
+    .rent-card {
+        height: 40vh;
+        margin-bottom: 10%;
+    }
+}

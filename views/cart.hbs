@@ -1,0 +1,84 @@
+<h1>Cart</h1>
+
+{{#if user.cart.length}}
+
+<section id="rentals-display">
+    <div class="list-box container">
+        <div class="rental-row row">
+  
+            {{#each user.cart}}
+                
+                <div class="rent-card col-12 col-md-6 col-lg-4" id="cart-{{this.rental._id}}">
+
+                    <div class="rent-card-img">
+                        <img class="rent-img img-fluid" src="/images/{{this.rental.imageUrl}}" alt="Rental Property">
+                        <button class="rent-save" type="submit" data-bs-toggle="modal" data-bs-target="#removeModal">
+                            <span class="material-symbols-outlined heart">delete</span>
+                            <span class="save">Remove</span>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="removeModalLabel">Remove</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want to remove this rental from the cart?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="text-white" href="#">
+                                            <button type="button" class="btn btn-secondary">
+                                                Yes
+                                            </button>
+                                        </a>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="rent-card-info">
+
+                        <h6 class="rent-card-title text-truncate">{{this.rental.headline}}</h6>
+                        <span class="rent-bed-info">{{this.rental.city}}, {{this.rental.province}}</span>
+
+                        <div class="night-manager d-flex justify-content-start">
+
+                            <form method="post" action="/cart/add/{{this.rental._id}}" class="d-inline">
+                                <button class="nights-minus border border-0 mx-1" type="submit" {{#if (eq this.nights 1)}} disabled {{/if}}>
+                                    <span class="material-symbols-outlined">remove</span>
+                                </button>
+                            </form>
+
+                            <span class="rent-nights">Nights: {{this.nights}}</span>
+
+                            <form method="post" action="/cart/add/{{this.rental._id}}" class="d-inline">
+                                <button class="nights-plus border border-0 mx-1" type="submit">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                            </form>
+
+                        </div>
+
+                        <span class="rent-price"><span class="cost">CA${{this.rental.pricePerNight}}</span>/night</span>
+                        <span class="rent-total-price">Total Stay: CA${{multiply this.rental.pricePerNight this.nights}}</span>
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+</section>
+
+
+  <form action="/cart/checkout" method="POST">
+    <button type="submit">Checkout</button>
+  </form>
+{{else}}
+  <p>Your cart is empty.</p>
+{{/if}}
