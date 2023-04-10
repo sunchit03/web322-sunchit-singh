@@ -32,7 +32,6 @@ router.get("/", (req, res) => {
                     css: false,
                     script: true,
                     src: "star-rating",
-                    user: req.session.user
                 })
 
             })
@@ -52,7 +51,6 @@ router.get("/", (req, res) => {
                 css: false,
                 script: true,
                 src: "star-rating",
-                user: res.locals.user
             })
         })
         .catch((err) => {
@@ -129,8 +127,8 @@ router.post("/log-in", (req, res) => {
                                 // Create a new session by storing the user document (object) to the session
                                 req.session.user = user;
                                 req.session.isClerk = clerkorcust === "Clerk";
-                                //res.locals.user = req.session.user;
-                                //res.locals.isClerk = req.session.isClerk;
+                                res.locals.user = req.session.user;
+                                res.locals.isClerk = req.session.isClerk;
                                 console.log(req.session.user);
 
                                 if (req.session.isClerk) {
@@ -331,6 +329,9 @@ router.get("/cart", (req, res) => {
 
         const userId = req.session.user._id;
 
+        res.locals.user = req.session.user;
+        res.locals.isClerk = req.session.isClerk;
+
         userModel.findById(userId)
         .populate("cart.rental")
         .lean()
@@ -481,6 +482,8 @@ router.get("/cart/remove/:id", (req, res) => {
 
 router.get("/log-out", (req, res) => {
     req.session.destroy();
+    res.locals.user = null;
+    res.locals.isClerk = null;
     res.redirect("/log-in");
 })
 
