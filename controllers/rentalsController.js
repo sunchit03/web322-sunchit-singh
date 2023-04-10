@@ -3,15 +3,52 @@ const path = require("path");
 const fs = require('fs');
 const router = express.Router();
 const rentalList = require("../models/rentals-db");
+const userModel = require("../models/userModel");
 const rentalModel = require("../models/rentalModel");
 
 router.get("/rentals", (req, res) => {
 
-    rentalModel.find({})
+    let rentals;
+
+    if (req.session && req.session.user) {
+        const userId = req.session.user._id;
+
+        userModel.findById(userId)
+        .then(user => {
+            const cartRentals = user.cart.map((item) => item.rental._id.toString());
+
+
+            rentalModel.find({})
+            .then(data => {
+
+                rentals = data.map(rental => rental.toObject());
+            
+                rentals.forEach((rental) => {
+                    rental.isInCart = cartRentals.includes(rental._id.toString());
+                    //rentalObj[rental._id] = rental;
+                });
+
+                res.render("rentals/rentals", {
+                    rentalList: rentalList.getRentalsByCityAndProvince(rentals),
+                    title: "Rentals",
+                    css: true,
+                    href: "rentals",
+                    script: true,
+                    src: "star-rating"
+                });
+
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+        })
+    }
+    else {
+        rentalModel.find({})
         // .lean()
         .then((data) => {
 
-            let rentals = data.map(rental => rental.toObject())
+            rentals = data.map(rental => rental.toObject());
 
             res.render("rentals/rentals", {
                 rentalList: rentalList.getRentalsByCityAndProvince(rentals),
@@ -21,7 +58,8 @@ router.get("/rentals", (req, res) => {
                 script: true,
                 src: "star-rating"
             });
-        });    
+        });  
+    }  
 })
 
 

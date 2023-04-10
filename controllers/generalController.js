@@ -1,7 +1,6 @@
 const express = require("express");
 const bcryptjs = require("bcryptjs");
 const router = express.Router();
-const rentalList = require("../models/rentals-db");
 const userModel = require("../models/userModel");
 const rentalModel = require("../models/rentalModel");
 
@@ -413,7 +412,8 @@ router.post("/cart/add/:id", (req, res) => {
                             { new: true }
                         )
                         .then(user => {
-                            res.redirect("/cart");
+                            console.log(`Rental ${rentalId} added to user ${user.fname}'s cart`)
+                            res.redirect(`/cart#cart-${rentalId}`);
                         })
                         .catch(err => {
                             console.error(err);
@@ -437,6 +437,37 @@ router.post("/cart/add/:id", (req, res) => {
     }
     
 });
+
+
+router.post("/cart/remove-one/:id", (req, res) => {
+
+    if (req.session && req.session.user && req.session.isClerk === false) {
+
+        const rentalId = req.params.id;
+        const userId = req.session.user._id;
+
+        userModel.findOneAndUpdate(
+            { _id: userId, "cart.rental": rentalId },
+            { $inc: { "cart.$.nights": -1 } },
+            { new: true }
+        )
+        .then(user => {
+            if (user) {
+                res.redirect(`/cart#cart-${rentalId}`);
+            } else {
+                res.status(401).send(`Rental ${rentalId} not found in cart!`);
+            }
+        })
+        .catch(err => {
+            res.status(401).send(`User ${userId} not found! ... ${err}`);
+        });
+
+    } else {
+        res.status(401).send("You are not authorized to view this page");
+    }
+    
+});
+
 
 
 router.get("/log-out", (req, res) => {

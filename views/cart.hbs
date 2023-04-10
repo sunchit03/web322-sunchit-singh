@@ -18,7 +18,7 @@
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="removeModal" style="z-index: 99999;" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -48,7 +48,7 @@
 
                         <div class="night-manager d-flex justify-content-start">
 
-                            <form method="post" action="/cart/add/{{this.rental._id}}" class="d-inline">
+                            <form method="post" action="/cart/remove-one/{{this.rental._id}}" class="d-inline">
                                 <button class="nights-minus border border-0 mx-1" type="submit" {{#if (eq this.nights 1)}} disabled {{/if}}>
                                     <span class="material-symbols-outlined">remove</span>
                                 </button>
