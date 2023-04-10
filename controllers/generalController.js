@@ -347,17 +347,21 @@ router.get("/cart", (req, res) => {
                 return acc + price;
             }, 0);
 
+            const subTotalWord = subTotal.toFixed(2) || 0;
+
             const VAT = subTotal * 0.1;
+            const VATWord = VAT.toFixed(2);
 
             const grandTotal = subTotal + VAT;
+            const grandTotalWord = grandTotal.toFixed(2);
 
             res.render("cart", { 
                 user,
                 css: true,
                 href: "list",
-                subTotal,
-                VAT,
-                grandTotal
+                subTotalWord,
+                VATWord,
+                grandTotalWord
             });
         })
         .catch((err) => {

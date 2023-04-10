@@ -16,7 +16,18 @@
                 </a>
             </li>
             {{#if user}}
-            <li class="footer-tem">
+            {{#if isClerk}}
+            <li class="footer-item">
+                <a class="footer-link" href="/rentals/list"><span>List</span>
+                </a>
+            </li>
+            {{else}}
+            <li class="footer-item">
+                <a class="footer-link" href="/cart"><span>Cart</span>
+                </a>
+            </li>
+            {{/if}}
+            <li class="footer-item">
                 <a class="footer-link" href="/log-out"><span>Log out</span>
                 </a>
             </li>

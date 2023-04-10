@@ -1,9 +1,10 @@
-<h1>Cart</h1>
+<section id="rentals-display" class="d-flex flex-row align-items-stretch justify-content-between">
 
-{{#if user.cart.length}}
 
-<section id="rentals-display">
-    <div class="list-box container">
+    {{#if user.cart.length}}
+
+    <div class="list-box container" style="width:70%">
+        <h2 class="mb-4">Cart ({{user.cart.length}})</h2>
         <div class="rental-row row">
   
             {{#each user.cart}}
@@ -73,12 +74,36 @@
 
         </div>
     </div>
+
+    {{else}}
+        <div class="list-box container" style="width:70%">
+            <h2 class="mb-4">Cart ({{user.cart.length}})</h2>
+            <div>
+                <p>Looks like your cart is empty</p>
+                <p><a href="/rentals/rentals">Browse our collection</a></p>
+            </div>
+        </div>
+    {{/if}}
+
+    <div class="card w-25 mx-auto position-relative p-2 mb-5" style="max-height: 80vh">
+        <div class="card-body">
+            <h3 class="card-title mb-3">Checkout</h3>
+            {{#if user.cart.length}}
+                <div id="sub-total" class="card-text">Subtotal<span class="float-end">${{subTotalWord}}</span></div>
+                <hr>
+                <div id="vat" class="card-text">VAT<span class="float-end">${{VATWord}}</span></div>
+            {{/if}}
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div id="grand-total" class="card-text">Grand Total</div><span class="float-end fw-bold fs-5">${{grandTotalWord}}</span>
+            </div>
+            
+            {{#if user.cart.length}}
+                <form action="/cart/checkout" method="POST" class="mt-5">
+                    <input id="submit" type="submit" class="btn btn-outline-primary" value="Place Order">
+                </form>
+            {{/if}}
+        </div>
+    </div>
+
 </section>
 
-
-  <form action="/cart/checkout" method="POST">
-    <button type="submit">Checkout</button>
-  </form>
-{{else}}
-  <p>Your cart is empty.</p>
-{{/if}}
