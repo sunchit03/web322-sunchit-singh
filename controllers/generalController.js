@@ -59,26 +59,6 @@ router.get("/", (req, res) => {
             console.error(err);
         });
     }
-
-    //const rentalObj = {};
-
-    // rentalModel.find({ featuredRental: true })
-    // .then((data) => {  
-        
-    //     let rentals = data.map(rental => rental.toObject());
-    
-
-    //     res.render("home", {
-    //         rentals,
-    //         title: "Home",
-    //         css: false,
-    //         script: true,
-    //         src: "star-rating"
-    //     })
-    // })
-    // .catch((err) => {
-    //     console.error(err);
-    // });
 })
 
 router.get("/home", (req, res) => {
@@ -149,8 +129,8 @@ router.post("/log-in", (req, res) => {
                                 // Create a new session by storing the user document (object) to the session
                                 req.session.user = user;
                                 req.session.isClerk = clerkorcust === "Clerk";
-                                res.locals.user = req.session.user;
-                                res.locals.isClerk = req.session.isClerk;
+                                //res.locals.user = req.session.user;
+                                //res.locals.isClerk = req.session.isClerk;
                                 console.log(req.session.user);
 
                                 if (req.session.isClerk) {
