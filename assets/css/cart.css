@@ -73,14 +73,14 @@
     }
 
     #checkout {
-        width: 50%;
+        width: 70%;
         max-height: unset;
     }
 }
 
 @media only screen and (max-width: 730px) {
     .rent-card {
-        margin-bottom: 10%;
+        margin-bottom: 12%;
     }
 
     #rentals-display {
@@ -96,6 +96,6 @@
     
     .rent-card {
         height: 40vh;
-        margin-bottom: 12%;
+        margin-bottom: 15%;
     }
 }

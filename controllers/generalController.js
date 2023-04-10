@@ -355,7 +355,8 @@ router.get("/cart", (req, res) => {
             const grandTotal = subTotal + VAT;
             const grandTotalWord = grandTotal.toFixed(2);
 
-            res.render("cart", { 
+            res.render("cart", {
+                title: "Cart",
                 user,
                 css: true,
                 href: "cart",
