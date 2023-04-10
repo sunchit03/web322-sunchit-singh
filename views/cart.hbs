@@ -1,9 +1,9 @@
-<section id="rentals-display" class="d-flex flex-row align-items-stretch justify-content-between">
+<section id="rentals-display">
 
 
     {{#if user.cart.length}}
 
-    <div class="list-box container" style="width:70%">
+    <div class="list-box container">
         <h2 class="mb-4">Cart ({{user.cart.length}})</h2>
         <div class="rental-row row">
   
@@ -76,16 +76,16 @@
     </div>
 
     {{else}}
-        <div class="list-box container" style="width:70%">
+        <div class="list-box container">
             <h2 class="mb-4">Cart ({{user.cart.length}})</h2>
-            <div>
-                <p>Looks like your cart is empty</p>
-                <p><a href="/rentals/rentals">Browse our collection</a></p>
+            <div class="fs-6 mx-auto text-center">
+                <p>Looks like your cart is empty!</p>
+                <p><a href="/rentals/rentals">Continue Browsing</a></p>
             </div>
         </div>
     {{/if}}
 
-    <div class="card w-25 mx-auto position-relative p-2 mb-5" style="max-height: 80vh">
+    <div id="checkout" class="card mx-auto position-relative p-2 mb-5">
         <div class="card-body">
             <h3 class="card-title mb-3">Checkout</h3>
             {{#if user.cart.length}}

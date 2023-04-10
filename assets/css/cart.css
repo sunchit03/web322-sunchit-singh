@@ -1,6 +1,101 @@
-h3 {
+#rentals-display {
     position: relative;
     top: 25vh;
-    margin: 0 auto 100px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto 50px;
+}
+
+.list-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 50px;
+    width: 70%;
+}
+
+.rental-row {
+    justify-content: flex-start;
+}
+
+.rent-card {
+    margin-bottom: 8%;
+}
+
+.rent-card-img {
+    width: 100%;
+    height: 70%;
+}
+
+.rent-img {
+    width: 100%;
+    height: 100%;
+}
+
+#checkout {
+    max-height: 70vh;
+    width: 25%;
+}
+
+#submit {
+    width: 100%;
+    border-color: #341a73;
+    color: #341a73;
+}
+
+#submit:hover {
+    background-color: #341a73;
+    color: white;
+}
+
+@media only screen and (min-width: 992px) {
+    .rent-card {
+        width: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 800px) and (min-width: 620px) { 
+    .rent-card {
+        width: unset;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    #rentals-display {
+        top: 30vh;
+        flex-direction: column;
+    }
+
+    #checkout {
+        width: 50%;
+        max-height: unset;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .rent-card {
+        margin-bottom: 10%;
+    }
+
+    #rentals-display {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    #rentals-display {
+        top: 20vh;
+    }
+    
+    .rent-card {
+        height: 40vh;
+        margin-bottom: 12%;
+    }
 }

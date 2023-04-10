@@ -358,7 +358,7 @@ router.get("/cart", (req, res) => {
             res.render("cart", { 
                 user,
                 css: true,
-                href: "list",
+                href: "cart",
                 subTotalWord,
                 VATWord,
                 grandTotalWord
