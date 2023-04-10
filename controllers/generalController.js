@@ -31,7 +31,8 @@ router.get("/", (req, res) => {
                     title: "Home",
                     css: false,
                     script: true,
-                    src: "star-rating"
+                    src: "star-rating",
+                    user: req.session.user
                 })
 
             })
@@ -50,7 +51,8 @@ router.get("/", (req, res) => {
                 title: "Home",
                 css: false,
                 script: true,
-                src: "star-rating"
+                src: "star-rating",
+                user: res.locals.user
             })
         })
         .catch((err) => {
@@ -468,6 +470,33 @@ router.post("/cart/remove-one/:id", (req, res) => {
     
 });
 
+
+router.get("/cart/remove/:id", (req, res) => {
+    if (req.session && req.session.user && req.session.isClerk === false) {
+      const rentalId = req.params.id;
+      const userId = req.session.user._id;
+  
+      userModel.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { cart: { rental: rentalId } } },
+        { new: true }
+      )
+        .then((user) => {
+          if (user) {
+            res.redirect("/cart");
+          } else {
+            res.status(401).send(`User ${userId} not found!`);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Internal Server Error");
+        });
+    } else {
+      res.status(401).send("You are not authorized to view this page");
+    }
+  });
+  
 
 
 router.get("/log-out", (req, res) => {

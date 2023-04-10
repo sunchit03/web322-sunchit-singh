@@ -75,8 +75,17 @@
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="/">Home</a></li>
     <li><a class="dropdown-item" href="/rentals/rentals">Rentals</a></li>
-    <li><a class="dropdown-item" href="/log-in">Log in</a></li>
-    <li><a class="dropdown-item" href="/sign-up">Sign up</a></li>
+    {{#if user}}
+        <li>
+            <a class="dropdown-item" {{#if isClerk}}href="/rentals/list" {{else}} href="/cart" {{/if}}>
+                <span>Hello {{user.fname}}!</span>
+            </a>
+        </li>
+        <li><a class="dropdown-item" href="/log-out">Log out</a></li>
+    {{else}}
+        <li><a class="dropdown-item" href="/log-in">Log in</a></li>
+        <li><a class="dropdown-item" href="/sign-up">Sign up</a></li>
+    {{/if}}
   </ul>
 </div>
 </nav>
