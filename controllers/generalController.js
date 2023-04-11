@@ -484,7 +484,7 @@ router.get("/cart/remove/:id", (req, res) => {
   });
   
 
-router.get("/cart/checkout", (req, res) => {
+router.post("/cart/checkout", (req, res) => {
 
     if (req.session && req.session.user && req.session.isClerk === false) {
 
@@ -501,6 +501,7 @@ router.get("/cart/checkout", (req, res) => {
             ).then(user => {
                 if (user) {
                     console.log(`User ${user.fname}'s cart has been checked out!`)
+                    res.redirect("/cart")
                 }
                 else {
                     res.status(401).send(`User ${userId} not found!`);
