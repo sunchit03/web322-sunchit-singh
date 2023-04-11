@@ -484,6 +484,41 @@ router.get("/cart/remove/:id", (req, res) => {
   });
   
 
+router.get("/cart/checkout", (req, res) => {
+
+    if (req.session && req.session.user && req.session.isClerk === false) {
+
+        const userId = req.session.user._id;
+        if (req.session.user.cart.length) {
+
+            // send mail
+
+
+            userModel.findOneAndUpdate(
+                { _id: userId },
+                { $set: { cart: []}},
+                { new: true }
+            ).then(user => {
+                if (user) {
+                    console.log(`User ${user.fname}'s cart has been checked out!`)
+                }
+                else {
+                    res.status(401).send(`User ${userId} not found!`);
+                }
+            })
+            .catch((err) => {
+                res.status(500).send("Internal Server Error");
+            });
+        } else {
+            console.log(`User ${userId}'s cart is empty`);
+            res.redirect("/cart");
+        }
+    }
+    else {
+        res.status(401).send("You are not authorized to view this page");
+    }
+})
+
 
 router.get("/log-out", (req, res) => {
     req.session.destroy();

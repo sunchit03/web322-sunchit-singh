@@ -16,6 +16,7 @@ const exphbs = require("express-handlebars");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const fileUpload = require("express-fileupload");
 
 // Set up dotenv
@@ -53,7 +54,11 @@ app.use(fileUpload());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_CONN_STRING,
+        touchAfter: 24 * 3600 // time period in seconds
+      })
 }));
 
 
