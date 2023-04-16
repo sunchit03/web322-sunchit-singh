@@ -115,8 +115,14 @@ router.get("/add", (req, res) => {
 
 router.post("/add", (req, res) => {
     // TODO: Validate the form information.
-    const { headline, numSleeps, numBedrooms, numBathrooms, pricePerNight, city, province, featuredRental } = req.body;
-
+    const { headline, numSleeps, numBedrooms, numBathrooms, pricePerNight, city, province } = req.body;
+    let featuredRental;
+    if (req.body.featuredRental === undefined) {
+        featuredRental = 'off';
+    }
+    else {
+        featuredRental = 'on';
+    }
         // Create a new user model.
         const newRental = new rentalModel({ headline, numSleeps, numBedrooms, numBathrooms, pricePerNight, city, province, featuredRental });
 
@@ -125,7 +131,7 @@ router.post("/add", (req, res) => {
         .then(rentalSaved => {
             console.log(`Rental ${rentalSaved.headline} has been added to the database.`);
 
-            // Create a unique name for the image, so that it can be stord in the file system.
+            // Create a unique name for the image, so that it can be stored in the file system.
             let uniqueName = `rental-pic-${rentalSaved._id}${path.parse(req.files.imageUrl.name).ext}`;
 
             // Copy the image data to a file in the "/assets/images" folder.
@@ -212,7 +218,12 @@ router.get("/edit/:id", (req, res) => {
 router.post("/edit/:id", (req, res) => {
     const id = req.params.id;
     //const { headline, numSleeps, numBedrooms, numBathrooms, pricePerNight, city, province, featuredRental } = req.body;
-    console.log(req.body);
+
+    if (req.body.featuredRental === undefined) {
+        req.body.featuredRental = 'off';
+    }
+
+    console.log(req.body.featuredRental);
     let imgUrl;
     if (!req.files || !req.files.imageUrl) {
         rentalModel.findById(id)
