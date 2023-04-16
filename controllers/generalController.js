@@ -324,13 +324,14 @@ router.post("/sign-up", (req, res) => {
 })
 
 
+let subTotalWord = '';
+let VATWord = '';
+let grandTotalWord = '';
+
 router.get("/cart", (req, res) => {
     if (req.session && req.session.user && req.session.isClerk === false) {
 
         const userId = req.session.user._id;
-
-        res.locals.user = req.session.user;
-        res.locals.isClerk = req.session.isClerk;
 
         userModel.findById(userId)
         .populate("cart.rental")
@@ -347,13 +348,13 @@ router.get("/cart", (req, res) => {
                 return acc + price;
             }, 0);
 
-            const subTotalWord = subTotal.toFixed(2) || 0;
+            subTotalWord = subTotal.toFixed(2) || 0;
 
             const VAT = subTotal * 0.1;
-            const VATWord = VAT.toFixed(2);
+            VATWord = VAT.toFixed(2);
 
             const grandTotal = subTotal + VAT;
-            const grandTotalWord = grandTotal.toFixed(2);
+            grandTotalWord = grandTotal.toFixed(2);
 
             res.render("cart", {
                 title: "Cart",
@@ -489,31 +490,84 @@ router.post("/cart/checkout", (req, res) => {
     if (req.session && req.session.user && req.session.isClerk === false) {
 
         const userId = req.session.user._id;
-        if (req.session.user.cart.length) {
 
-            // send mail
+        userModel.findById(userId)
+        .then(user => {
+            if (user) {
+                const cartLength = user.cart.length;
 
+                if (cartLength) {
+                    userModel.findById(userId)
+                    .populate("cart.rental")
+                    .lean()
+                    .then((user) => {
+                        const cartItems = user.cart;
 
-            userModel.findOneAndUpdate(
-                { _id: userId },
-                { $set: { cart: []}},
-                { new: true }
-            ).then(user => {
-                if (user) {
-                    console.log(`User ${user.fname}'s cart has been checked out!`)
-                    res.redirect("/cart")
+                        // send mail
+                        const sgMail = require("@sendgrid/mail");
+                        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+                        const msg = {
+                            to: req.session.user.email,
+                            from: "sunchit333@gmail.com",
+                            subject: "Cart Checkout",
+                            html: `
+                                <h1>Your Rentals:</h1>
+                                ${cartItems.map(item => `
+                                    <p><strong>${item.rental.headline}</strong></p>
+                                    <p><i>${item.rental.city}, ${item.rental.province}</i></p>
+                                    <p>Nights: ${item.nights}</p>
+                                    <p>CA$${item.rental.pricePerNight}/night</p>
+                                    <p>Total Stay: <b>$${item.rental.pricePerNight * item.nights}</b></p>
+                                    <hr>
+                                `).join('')}
+                                <br>
+                                <div>
+                                    <h3>Subtotal: $${subTotalWord}</h3>
+                                    <h3>VAT: $${VATWord}</h3>
+                                    <h3>Grand Total: <strong>$${grandTotalWord}</strong></h3>
+                                </div>
+                                `, 
+                        }
+
+                        sgMail.send(msg)
+                        .then(() => {
+                            userModel.findOneAndUpdate(
+                                { _id: userId },
+                                { $set: { cart: []}},
+                                { new: true }
+                            )
+                            .then(user => {
+                                if (user) {
+                                    console.log(`User ${user.fname}'s cart has been checked out!`)
+                                    res.redirect("/cart")
+                                }
+                                else {
+                                    res.status(401).send(`User ${userId} not found!`);
+                                }
+                            })
+                            .catch((err) => {
+                                res.status(500).send("Internal Server Error");
+                            });
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        res.status(500).send("Internal Server Error");
+                    });
+
+                } else {
+                    console.log(`User ${userId}'s cart is empty`);
+                    res.redirect("/cart");
                 }
-                else {
-                    res.status(401).send(`User ${userId} not found!`);
-                }
-            })
-            .catch((err) => {
-                res.status(500).send("Internal Server Error");
-            });
-        } else {
-            console.log(`User ${userId}'s cart is empty`);
-            res.redirect("/cart");
-        }
+            }
+        })
+        .catch(err => {
+            console.error(`Could not find user ${userId} ... ${err}`);
+        });          
     }
     else {
         res.status(401).send("You are not authorized to view this page");
