@@ -324,9 +324,6 @@ router.post("/sign-up", (req, res) => {
 })
 
 
-let subTotalWord = '';
-let VATWord = '';
-let grandTotalWord = '';
 
 router.get("/cart", (req, res) => {
     if (req.session && req.session.user && req.session.isClerk === false) {
@@ -348,13 +345,13 @@ router.get("/cart", (req, res) => {
                 return acc + price;
             }, 0);
 
-            subTotalWord = subTotal.toFixed(2) || 0;
+            let subTotalWord = subTotal.toFixed(2) || 0;
 
             const VAT = subTotal * 0.1;
-            VATWord = VAT.toFixed(2);
+            let VATWord = VAT.toFixed(2);
 
             const grandTotal = subTotal + VAT;
-            grandTotalWord = grandTotal.toFixed(2);
+            let grandTotalWord = grandTotal.toFixed(2);
 
             res.render("cart", {
                 title: "Cart",
@@ -502,6 +499,23 @@ router.post("/cart/checkout", (req, res) => {
                     .lean()
                     .then((user) => {
                         const cartItems = user.cart;
+
+                        // Calculate the total price for all cart items
+                        const subTotal = cartItems.reduce((acc, item) => {
+                            const rentalPrice = item.rental.pricePerNight;
+                            const nights = item.nights;
+                            const price = rentalPrice * nights;
+                            return acc + price;
+                        }, 0);
+
+                        let subTotalWord = subTotal.toFixed(2) || 0;
+
+                        const VAT = subTotal * 0.1;
+                        let VATWord = VAT.toFixed(2);
+
+                        const grandTotal = subTotal + VAT;
+                        let grandTotalWord = grandTotal.toFixed(2);
+
 
                         // send mail
                         const sgMail = require("@sendgrid/mail");
