@@ -13,11 +13,6 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const session = require("express-session");
-const MongoStore = require('connect-mongo');
-const fileUpload = require("express-fileupload");
 // Set up express
 const app = express();
 
@@ -155,7 +150,7 @@ app.post("/sign-up", (req, res) => {
     }    
 
     if (passedValidation) {
-        const sgMail = require("@sendgrid/mail");
+const sgMail = require("@sendgrid/mail");
         sgMail.setApiKey("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");
 
         const msg = {
@@ -184,7 +179,6 @@ app.post("/sign-up", (req, res) => {
             });
             
         });
-
     } else {
         res.render("sign-up", {
             title: "Sign Up",
