@@ -13,6 +13,11 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
+const fileUpload = require("express-fileupload");
 
 // Set up dotenv
 dotenv.config({path: "./config/keys.env"});
