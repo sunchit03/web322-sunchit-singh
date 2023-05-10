@@ -76,7 +76,7 @@ app.use("/rentals", rentalsController);
 const loadDataController = require("./controllers/loadDataController");
 app.use("/load-data", loadDataController);
 
-        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
 // *** DO NOT MODIFY THE LINES BELOW ***
 
 // This use() will not allow requests to go beyond it
